@@ -1,0 +1,141 @@
+/* =====================================================
+   estilos.css - Estilos propios del sitio Xbox vs PlayStation
+   Bootstrap hace la mayor parte del diseño; aquí solo agrego lo extra.
+   ===================================================== */
+
+/* ---------- Colores que uso en todo el sitio ---------- */
+/* Las variables (--nombre) se definen una vez y se usan con var(--nombre);
+   si cambio el valor aquí, cambia en todos los lugares donde se usa. */
+:root {
+  --xbox: #107c10;          /* verde de Xbox */
+  --ps: #0b4ea2;            /* azul de PlayStation */
+  --acento: #2b2f3a;        /* color de fondo de los efectos hover (modo claro) */
+  --acento-texto: #ffffff;  /* color del texto sobre ese fondo */
+}
+
+/* Cuando el modo oscuro está activo, JavaScript pone data-bs-theme="dark" en <html>.
+   Este bloque vuelve a definir las variables con los colores invertidos, y todos los
+   efectos que usan var(--acento) se adaptan solos sin escribir reglas nuevas. */
+[data-bs-theme="dark"] {
+  --acento: #e9ecef;
+  --acento-texto: #111111;
+}
+
+/* ---------- Texto general ---------- */
+html {
+  scroll-behavior: smooth;   /* al ir a un enlace interno (#votacion) la página se desliza */
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;  /* Google Font para los párrafos */
+  font-size: 1.1rem;
+}
+
+/* Google Font para títulos y logo */
+h1, h2, h3, h4, h5, .logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+/* ---------- Logo (arriba a la izquierda y frase del pie) ---------- */
+.logo {
+  font-weight: 700;
+}
+
+/* Cada icono del logo con el color de su consola */
+.logo .bi-xbox { color: #3fae3f; }
+.logo .bi-playstation { color: #3d8fe8; }
+
+/* ---------- Barra de navegación ---------- */
+/* Efecto hover: al pasar el mouse el enlace cambia de fondo y de color de texto */
+.navbar .nav-link:hover {
+  background-color: var(--acento);
+  color: var(--acento-texto);
+  border-radius: 6px;
+}
+
+/* ---------- Sección principal (la de arriba en index) ---------- */
+.principal {
+  background-color: #111111;
+  color: white;
+  /* La línea de abajo se dibuja con border-image: el degradado tiene un corte
+     exacto en 50%, así queda mitad verde y mitad azul sin mezclarse. El "1" al final
+     indica que la imagen se estira por todo el borde. */
+  border-bottom: 6px solid;
+  border-image: linear-gradient(90deg, var(--xbox) 50%, var(--ps) 50%) 1;
+}
+
+/* ---------- Botones propios ---------- */
+.btn-xbox { background-color: var(--xbox); color: white; border: none; }
+.btn-xbox:hover { background-color: #0a5a0a; color: white; }  /* hover: verde más oscuro */
+
+.btn-ps { background-color: var(--ps); color: white; border: none; }
+.btn-ps:hover { background-color: #083a78; color: white; }    /* hover: azul más oscuro */
+
+.btn-acento { background-color: var(--acento); color: var(--acento-texto); border: none; }
+.btn-acento:hover { background-color: var(--ps); color: white; }
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  transition: all 0.3s;   /* el cambio de color y de posición ocurre en 0.3 segundos, no de golpe */
+}
+
+/* Efecto hover: la tarjeta cambia de color y sube un poco.
+   Las variables --bs-card-... son las que usa Bootstrap para pintar sus tarjetas,
+   así que al cambiarlas la tarjeta completa cambia sin tocar su HTML. */
+.tarjeta:hover {
+  --bs-card-bg: var(--acento);
+  --bs-card-color: var(--acento-texto);
+  --bs-card-title-color: var(--acento-texto);
+  transform: translateY(-4px);   /* negativo = sube 4 píxeles */
+}
+
+/* Tarjetas de votación: borde superior con el color de cada consola */
+.tarjeta-xbox { border-top: 6px solid var(--xbox); }
+.tarjeta-ps { border-top: 6px solid var(--ps); }
+
+/* Al pasar el mouse, toda la tarjeta toma el color de su consola.
+   Va después de .tarjeta:hover para que gane esta regla (la última en escribirse tiene prioridad). */
+.tarjeta-xbox:hover { --bs-card-bg: var(--xbox); --bs-card-color: white; }
+.tarjeta-ps:hover { --bs-card-bg: var(--ps); --bs-card-color: white; }
+
+/* ---------- Listas (ordenada y no ordenada) ---------- */
+.lista-hover li {
+  padding: 4px 8px;        /* espacio interno para que el fondo del hover se vea */
+  border-radius: 6px;
+}
+
+/* Efecto hover: el elemento de la lista se resalta */
+.lista-hover li:hover {
+  background-color: var(--acento);
+  color: var(--acento-texto);
+}
+
+/* ---------- Carrusel ---------- */
+/* Fondo negro semitransparente (el 0.6 es la opacidad) detrás del texto para que se lea sobre la imagen */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+  background-color: var(--bs-tertiary-bg);  /* variable de Bootstrap: cambia sola con el modo oscuro */
+}
+
+/* Iconos de redes sociales */
+.redes a {
+  font-size: 1.8rem;          /* los iconos son texto, por eso su tamaño se cambia con font-size */
+  margin: 0 8px;
+  color: inherit;             /* usan el mismo color que el texto que los rodea */
+  text-decoration: none;
+}
+
+/* Efecto hover: el icono cambia de color */
+.redes a:hover {
+  color: var(--ps);
+}
+
+/* En modo oscuro el azul oscuro casi no se ve, así que uso uno más claro */
+[data-bs-theme="dark"] .redes a:hover {
+  color: #3d8fe8;
+}
