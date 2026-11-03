@@ -6,7 +6,7 @@
 // =====================================================
 
 // Correo al que llegan los mensajes del formulario de contacto
-const MI_CORREO = "correo@ejemplo.com";
+const MI_CORREO = "patrickschrilsperez@gmail.com";
 
 
 // ---------- 1. MODO OSCURO ----------
