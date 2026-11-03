@@ -64,44 +64,66 @@ if (btnSaludar) {
 }
 
 
-// ---------- 5. ARTÍCULOS (solo en noticias.html) ----------
-// Cada artículo es un objeto { categoria, titulo, resumen, texto } dentro de una lista (array).
+// ---------- 5. NOTICIAS (solo en noticias.html) ----------
+// Las noticias salen de Xbox Wire (news.xbox.com) y del blog oficial de PlayStation (blog.playstation.com).
+// Cada una es un objeto { categoria, titulo, resumen, texto, fuente, fecha, enlace } dentro de una lista (array).
+// El resumen y el texto los escribí con mis propias palabras; "enlace" lleva a la noticia original.
 // Si agrego un objeto más a la lista, aparece una tarjeta nueva sin tocar el HTML.
 const noticias = [
   {
     categoria: "Suscripciones",
-    titulo: "Game Pass y PlayStation Plus: jugar por suscripción",
-    resumen: "Dos servicios que dan acceso a juegos a cambio de una cuota.",
-    texto: "Xbox Game Pass (Microsoft) y PlayStation Plus (Sony) funcionan por suscripción: pagas una cuota y obtienes acceso a un catálogo de juegos y a otras ventajas, como el juego en línea. Ambos tienen varios niveles, y sus precios y catálogos cambian con el tiempo, así que antes de decidir conviene revisar las páginas oficiales."
+    titulo: "Game Pass llega a los planes de T-Mobile en Estados Unidos",
+    resumen: "Por primera vez, Game Pass se podrá elegir dentro de un plan de telefonía en ese país.",
+    texto: "T-Mobile anunció T-Mix, un sistema que permite a sus clientes de Estados Unidos elegir los beneficios de su plan. A partir de noviembre, los clientes elegibles podrán escoger Game Pass Ultimate o Premium, con una biblioteca de juegos para consolas Xbox, televisores inteligentes, PC y otros dispositivos. Según Xbox Wire, es la primera vez que Game Pass se ofrece dentro de un plan de telefonía móvil en ese país.",
+    fuente: "Xbox Wire",
+    fecha: "26 de octubre de 2026",
+    enlace: "https://news.xbox.com/en-us/2026/10/26/xbox-game-pass-t-mobile/"
   },
   {
-    categoria: "Hardware",
-    titulo: "El control: DualSense vs control de Xbox",
-    resumen: "Dos formas distintas de sostener el juego.",
-    texto: "El DualSense de PlayStation 5 es conocido por su vibración háptica y sus gatillos adaptativos, que cambian la resistencia según el juego. El control inalámbrico de Xbox tiene un diseño que a muchos jugadores les resulta muy cómodo y también se puede usar en PC. La mejor opción depende de cuál te resulte más cómodo en las manos."
+    categoria: "Suscripciones",
+    titulo: "PlayStation Plus: los juegos mensuales de noviembre",
+    resumen: "Dead Island 2, Tomb Raider IV-VI Remastered y Monster Train 2 para los miembros.",
+    texto: "PlayStation anunció los tres juegos mensuales de PlayStation Plus para noviembre: Dead Island 2, Tomb Raider IV-VI Remastered y Monster Train 2. Los miembros podrán jugarlos desde el 3 hasta el 30 de noviembre. Dead Island 2 y Tomb Raider IV-VI Remastered están disponibles para PS5 y PS4, y Monster Train 2 para PS5.",
+    fuente: "PlayStation Blog",
+    fecha: "28 de octubre de 2026",
+    enlace: "https://blog.playstation.com/2026/10/28/playstation-plus-monthly-games-for-november-dead-island-2-tomb-raider-iv-vi-remastered-monster-train-2/"
   },
   {
-    categoria: "Opinión",
-    titulo: "¿Importa más la consola o los juegos?",
-    resumen: "La respuesta depende de lo que quieres jugar.",
-    texto: "Las consolas de una misma generación tienen un poder parecido, por eso muchas personas deciden según los juegos que quieren jugar, la plataforma que usan sus amigos y su presupuesto. Una buena pregunta antes de comprar es: ¿qué juegos quiero jugar y en cuál puedo jugarlos?"
+    categoria: "Accesorios",
+    titulo: "Xbox presenta el Nano Controller, su control más pequeño",
+    resumen: "Un control de bolsillo con las 18 entradas habituales y un precio de 49,99 dólares.",
+    texto: "Xbox presentó el Nano Controller, que mide un poco más de 5 pulgadas y pesa 3,5 onzas, por lo que es el control más pequeño de la marca. Conserva las 18 entradas habituales de un control, tiene batería recargable, un botón de acción programable y conexión Xbox Wireless y Bluetooth. Cuesta 49,99 dólares en Estados Unidos y estará disponible desde noviembre en varios países, entre ellos República Dominicana. Los precios varían según el país.",
+    fuente: "Xbox Wire",
+    fecha: "14 de octubre de 2026",
+    enlace: "https://news.xbox.com/en-us/2026/10/14/xbox-nano-controller/"
+  },
+  {
+    categoria: "Accesorios",
+    titulo: "PlayStation presenta la Prism Collection para el PS5",
+    resumen: "Controles DualSense y cubiertas de la consola con diseños transparentes en tres colores.",
+    texto: "PlayStation presentó la Prism Collection: controles DualSense y cubiertas para la consola PS5 con diseños transparentes en tres colores, naranja (Flare Orange), verde (Emerald Green) y gris (Graphite Gray). El DualSense tendrá un precio recomendado de 84,99 dólares y las cubiertas de 74,99 dólares. Las reservas empiezan el 10 de noviembre de 2026 y el lanzamiento comienza el 4 de febrero de 2027; la disponibilidad puede variar según el país.",
+    fuente: "PlayStation Blog",
+    fecha: "28 de octubre de 2026",
+    enlace: "https://blog.playstation.com/2026/10/28/first-look-inside-the-prism-collection-with-three-new-transparent-designs-for-ps5-accessories/"
   }
 ];
 
 const contenedor = document.getElementById("lista-noticias");
 if (contenedor) {
 
-  // forEach recorre la lista: "n" es el artículo actual e "i" su posición (0, 1, 2...)
+  // forEach recorre la lista: "n" es la noticia actual e "i" su posición (0, 1, 2...)
   noticias.forEach(function (n, i) {
     // Las comillas invertidas (`) permiten escribir HTML en varias líneas
     // y meter valores con ${...}. Con += voy agregando una tarjeta tras otra.
-    // data-indice guarda la posición del artículo para saber cuál abrir después.
+    // col-md-6 hace que en pantallas medianas y grandes haya dos tarjetas por fila.
+    // data-indice guarda la posición de la noticia para saber cuál abrir después.
     contenedor.innerHTML += `
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card tarjeta h-100">
           <div class="card-body d-flex flex-column">
             <span class="badge text-bg-secondary align-self-start mb-2">${n.categoria}</span>
             <h2 class="h5 card-title">${n.titulo}</h2>
+            <p class="small mb-2">${n.fuente}, ${n.fecha}</p>
             <p class="card-text">${n.resumen}</p>
             <button type="button" class="btn btn-ps mt-auto btn-leer" data-indice="${i}">Leer artículo</button>
           </div>
@@ -113,21 +135,25 @@ if (contenedor) {
   // querySelectorAll devuelve todos los botones "Leer artículo" y a cada uno le pongo su clic.
   document.querySelectorAll(".btn-leer").forEach(function (boton) {
     boton.addEventListener("click", function () {
-      // dataset.indice lee el data-indice del botón y con eso busco el artículo en la lista
+      // dataset.indice lee el data-indice del botón y con eso busco la noticia en la lista
       const n = noticias[boton.dataset.indice];
 
-      // Escribo el título y el texto dentro del modal (textContent no interpreta HTML)
+      // Escribo el título en el modal (textContent solo escribe texto, no interpreta HTML)
       document.getElementById("modal-titulo").textContent = n.titulo;
-      document.getElementById("modal-texto").textContent = n.texto;
+
+      // Aquí uso innerHTML porque además del texto agrego la fuente y un enlace a la noticia original.
+      // target="_blank" abre el enlace en otra pestaña. Es seguro usar innerHTML porque
+      // todo el contenido sale de mi propia lista y no de lo que escriba un visitante.
+      document.getElementById("modal-texto").innerHTML =
+        n.texto +
+        `<br><br><small>Fuente: ${n.fuente}, ${n.fecha}</small><br>` +
+        `<a href="${n.enlace}" target="_blank" rel="noopener">Ver noticia original</a>`;
 
       // Creo el modal de Bootstrap con JavaScript y lo muestro
       new bootstrap.Modal(document.getElementById("modalNoticia")).show();
     });
   });
-}
-
-
-// ---------- 5B. VOTACIÓN XBOX vs PLAYSTATION (solo en index.html) ----------
+}// ---------- 5B. VOTACIÓN XBOX vs PLAYSTATION (solo en index.html) ----------
 // Los votos se guardan en el navegador de cada visitante (localStorage),
 // así que cada persona solo ve su propio conteo.
 const btnVotoXbox = document.getElementById("voto-xbox");
