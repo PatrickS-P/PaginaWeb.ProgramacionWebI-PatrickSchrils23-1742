@@ -6,7 +6,7 @@
 // =====================================================
 
 // Correo al que llegan los mensajes del formulario de contacto
-const MI_CORREO = "patrickschrilsperez@gmail.com";
+const MI_CORREO = "correo@ejemplo.com";
 
 
 // ---------- 1. MODO OSCURO ----------
@@ -153,7 +153,10 @@ if (contenedor) {
       new bootstrap.Modal(document.getElementById("modalNoticia")).show();
     });
   });
-}// ---------- 5B. VOTACIÓN XBOX vs PLAYSTATION (solo en index.html) ----------
+}
+
+
+// ---------- 5B. VOTACIÓN XBOX vs PLAYSTATION (solo en index.html) ----------
 // Los votos se guardan en el navegador de cada visitante (localStorage),
 // así que cada persona solo ve su propio conteo.
 const btnVotoXbox = document.getElementById("voto-xbox");
